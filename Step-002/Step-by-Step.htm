@@ -1,14 +1,19 @@
-<b>Автзапуск MagicMirror<b>
+Автзапуск MagicMirror
 
 cd ~/MagicMirror
 sudo npm install -g pm2
 sudo pm2 startup
 sudo env PATH=$PATH:/usr/local/bin pm2 startup systemd -u pi --hp /home/pi 
 cd ~
+touch mm.sh
 nano mm.sh
+
+Внесите в файл следующие строки:
 
 cd ~/MagicMirror
 DISPLAY=:0 npm start
+
+Сохраните файл
 
 sudo chmod +x mm.sh
 pm2 start mm.sh
