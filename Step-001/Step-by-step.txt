@@ -1,3 +1,18 @@
+!!! Внимание !!!
+
+В новых версиях Imager-а в правом нижнем углу появилась возможность задать имя WiFi сети и пароль WiFi. Так же есть возможнсть разрешить доступ к малинке по SSH. При этом нет необходимости в файлах wpa_supplicant.conf и ssh. Всё задаётся через "Шестерёнку". Единственное замечание - если планируете вашу WiFi сеть скрыть, надо будет после установки raspbian, в файле wpa_supplicant.conf добавить строку scan_ssid=1, чтобы поучилось примерно следующее:
+---
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+        ssid="Имя_Вашей_Сети"
+        scan_ssid=1
+        psk=_пароль_
+}
+---
+
+Залогинимся по SSH, перейдём в домашнюю папку пользователя PI
 cd ~
 curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt install -y nodejs
