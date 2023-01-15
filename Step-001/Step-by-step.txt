@@ -1,18 +1,29 @@
 !!! Внимание !!!
 
 В новых версиях Imager-а в правом нижнем углу появилась возможность задать имя WiFi сети и пароль WiFi. Так же есть возможнсть разрешить доступ к малинке по SSH. При этом нет необходимости в файлах wpa_supplicant.conf и ssh. Всё задаётся через "Шестерёнку". Единственное замечание - если планируете вашу WiFi сеть скрыть, надо будет после установки raspbian, в файле wpa_supplicant.conf добавить строку scan_ssid=1, чтобы поучилось примерно следующее:
----
+--- содержимое wpa_supplicant.conf ---
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 
 network={
         ssid="Имя_Вашей_Сети"
         scan_ssid=1
-        psk=_пароль_
+        psk="_пароль_"
 }
----
+------
 
-Залогинимся по SSH, перейдём в домашнюю папку пользователя PI
+После установки raspbian, залогинимся по ssh и обновим систему, поставим mc и tmux
+
+sudo apt update
+sudo apt upgrade
+sudo apt-get install mc tmux git
+
+При необходимости, поправьте настройки через коныигуратор raspi-config. Уберите отключение дисплея, led и установите русскую локаль
+
+sudo raspi-config
+
+после сохранения параметров перезагрузитесь.
+Залогинимся по SSH, перейдём в домашнюю папку пользователя PI, установим node.js и ядро умного зеркала
 cd ~
 curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt install -y nodejs
@@ -22,11 +33,35 @@ npm run install-mm
 npm install -g npm@9.2.0
 cp config/config.js.sample config/config.js
 npm run start
+
+Сделаем автозапуск умного зеркала. Файл mm.sh приложен
+
 sudo npm install -g pm2
 pm2 startup
 cd ~
 sudo env PATH=$PATH:/usr/local/bin pm2 startup systemd -u pi --hp /home/pi
 nano mm.sh
+
+--- содержимое mm.sh ---
+cd ./MagicMirror
+DISPLAY=:0 npm start
+------
+
 chmod +x mm.sh
 pm2 start mm.sh
 pm2 save
+
+Установим пару погодных модулей. Все установки делаем от пользователя pi
+
+cd ~/MagicMirror/modules/
+git clone https://github.com/grenagit/MMM-MarineWeather
+cd git clone https://github.com/grenagit/MMM-MarineWeather
+npm install
+cd ~/MagicMirror/modules/
+git clone https://github.com/sathyarajv/MMM-OpenmapWeather.git
+cd MMM-OpenmapWeather
+npm install
+
+Каждый из установленных модулей имеет довольно подробную мурзилку с писанием всех параметров. Зарегистрируйтесь на https://home.openweathermap.org/ Получите API для зеркала. На этом же сайте найдите свой город и в адресной строке выдерните ID для Вашего города, выдерните широту и долготу.
+
+ Отредактируйте настройки ядра зеркала для установленных модулей. Конфиг прилагается.
