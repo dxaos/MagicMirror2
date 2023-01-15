@@ -1,0 +1,17 @@
+cd ~
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt install -y nodejs
+git clone https://github.com/MichMich/MagicMirror
+cd MagicMirror/
+npm run install-mm
+npm install -g npm@9.2.0
+cp config/config.js.sample config/config.js
+npm run start
+sudo npm install -g pm2
+pm2 startup
+cd ~
+sudo env PATH=$PATH:/usr/local/bin pm2 startup systemd -u pi --hp /home/pi
+nano mm.sh
+chmod +x mm.sh
+pm2 start mm.sh
+pm2 save
