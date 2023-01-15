@@ -56,7 +56,6 @@ pm2 save
 
 cd ~/MagicMirror/modules/
 git clone https://github.com/grenagit/MMM-MarineWeather
-cd git clone https://github.com/grenagit/MMM-MarineWeather
 npm install
 cd ~/MagicMirror/modules/
 git clone https://github.com/sathyarajv/MMM-OpenmapWeather.git
