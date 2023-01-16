@@ -1,3 +1,7 @@
+Идём на сайт rasberry https://www.raspberrypi.com/software/ и скачиваем утилиту для записи образов - imager. Там же на сайте можно скачать и сам образ raspbian, но можно указать образ при запуске imager-а. Запускаем, указываем образ, указываем диск, на который будем ставить, настраиваем параметры установки и устанавливаем. 
+
+Для установки советую не использовать MicroSD карты - они очень быстро умирают. Используйте SSD USB диски.
+
 !!! Внимание !!!
 
 В новых версиях Imager-а в правом нижнем углу появилась возможность задать имя WiFi сети и пароль WiFi. Так же есть возможнсть разрешить доступ к малинке по SSH. При этом нет необходимости в файлах wpa_supplicant.conf и ssh. Всё задаётся через "Шестерёнку". Единственное замечание - если планируете вашу WiFi сеть скрыть, надо будет после установки raspbian, в файле wpa_supplicant.conf добавить строку scan_ssid=1, чтобы поучилось примерно следующее:
@@ -28,23 +32,22 @@ cd ~
 curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt install -y nodejs
 git clone https://github.com/MichMich/MagicMirror
-cd MagicMirror/
-
+cd ~/MagicMirror
 npm run install-mm
 npm install -g npm@9.2.0
 cp config/config.js.sample config/config.js
 npm run start
 
 Сделаем автозапуск умного зеркала. Файл mm.sh приложен
-
+cd ~/MagicMirror
 sudo npm install -g pm2
-pm2 startup
-cd ~
+sudo pm2 startup
 sudo env PATH=$PATH:/usr/local/bin pm2 startup systemd -u pi --hp /home/pi
+cd ~
 nano mm.sh
 
 --- содержимое mm.sh ---
-cd ./MagicMirror
+cd ~/MagicMirror
 DISPLAY=:0 npm start
 ------
 
