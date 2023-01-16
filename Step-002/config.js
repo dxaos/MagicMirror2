@@ -73,7 +73,7 @@ let config = {
                         config: {
                                 // See 'Configuration options' for more information.
                                 location: "_Ваш_город_, _RU_", 
-                                locationID: "_ID_Вашего_города_", //Location ID from http://openweathermap.org/help/city_list.txt
+                                locationID: "_ID_Вашего_города_", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
                                 appid: "_API_который_Вы_сгенерировали_",  //openweathermap.org API key
                                 colorIcon: true
                         }
