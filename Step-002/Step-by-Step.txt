@@ -1,4 +1,4 @@
-Автзапуск MagicMirror
+#Автзапуск MagicMirror
 
 cd ~/MagicMirror
 sudo npm install -g pm2
@@ -10,8 +10,10 @@ nano mm.sh
 
 Внесите в файл следующие строки:
 
+--- содержимое mm.sh ---
 cd ~/MagicMirror
 DISPLAY=:0 npm start
+------
 
 Сохраните файл
 
