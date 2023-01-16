@@ -1,0 +1,47 @@
+Для нормальной работы умного зеркала уберите автоотключение монитора. Для этого запустите sudo raspi-config, в меню Display options -> Screen blanking выберите "Нет", сохраните.
+
+При настройке модулей необходимо понимать, где они будут раполагаться. Список регионов можно найти здесь https://forum.magicmirror.builders/topic/286/regions
+
+Автзапуск MagicMirror
+
+cd ~/MagicMirror
+sudo npm install -g pm2
+sudo pm2 startup
+sudo env PATH=$PATH:/usr/local/bin pm2 startup systemd -u pi --hp /home/pi 
+cd ~
+touch mm.sh
+nano mm.sh
+
+Внесите в файл следующие строки:
+
+--- содержимое mm.sh ---
+cd ~/MagicMirror
+DISPLAY=:0 npm start
+------
+
+Сохраните файл
+
+sudo chmod +x mm.sh
+pm2 start mm.sh
+pm2 save
+
+Установим пару погодных модулей. Все установки делаем от пользователя pi
+
+cd ~/MagicMirror/modules/
+git clone https://github.com/grenagit/MMM-MarineWeather
+npm install
+cd ~/MagicMirror/modules/
+git clone https://github.com/sathyarajv/MMM-OpenmapWeather.git
+cd MMM-OpenmapWeather
+npm install
+
+Каждый из установленных модулей имеет довольно подробную мурзилку с писанием всех параметров. Зарегистрируйтесь на https://home.openweathermap.org/ Получите API для зеркала. На этом же сайте найдите свой город и в адресной строке выдерните ID для Вашего города, выдерните широту и долготу.
+
+Отредактируйте настройки ядра зеркала для установленных модулей. Конфиг прилагается. Если подключиться по VNC, можно в режиме реального времени видеть результат применения настроек
+
+cd ~/MagicMirror/config/
+nano config.js
+
+после правок сохраните конфиг и рестартаните зеркало
+cd ~
+pm2 restart mm.sh
