@@ -1,0 +1,25 @@
+Для удобства работы, чтобы постоянно не лазить в терминал, поставим пакет samba. Он позводит по сети заходить на наше зеркало и править конфиги прямо с локального компа.
+
+sudo apt-get install samba
+sudo cp /etc/samba/smb.conf /etc/samba/smb.conf_orig
+sudo nano /etc/samba/smb.conf
+
+Добавляем в конец шару каталога ядра умного зеркала
+
+[MagicMirror]
+  path = /home/pi/MagicMirror
+  browseable = yes
+  valid users = @pi
+  wriable = yes
+
+Сохраняем файл. Создаём samba-пользователя, задаём ему пароль, активируем его
+pi@MagicMirror:~ $ sudo smbpasswd -a pi
+New SMB password:
+Retype new SMB password:
+Added user pi.
+
+pi@MagicMirror:~ $ sudo smbpasswd -e pi
+Enabled user pi.
+
+Рестартуем самбу, и пробуем зайти по сети на малинку по ip
+sudo service smbd restart
