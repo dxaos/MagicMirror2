@@ -51,43 +51,42 @@ let config = {
                 },
                 {
                         module: "calendar",
-                        header: "Праздники",
+                        header: "US Holidays",
                         position: "top_left",
                         config: {
                                 calendars: [
                                         {
                                                 symbol: "calendar-check",
-                                                url: "http://www.calend.ru/ical/ical-russtate.ics"
-                                        },
-                                        {
-                                                symbol: "calendar-check",
-                                                url: "http://www.calend.ru/ical/ical-wholeworld.ics"
+                                                url: "webcal://www.calendarlabs.com/ical-calendar/ics/76/US_Holidays.ics"
                                         }
                                 ]
                         }
                 },
                 {
-                        module: "MMM-OpenmapWeather",
-                        position: "top_right",  // This can be any of the regions. Best results in left or right regions.
-                        header: "Погода сейчас", //Location is the default value if header is empty or not defined.
+                        module: "compliments",
+                        position: "lower_third"
+                },
+                {
+                        module: "weather",
+                        position: "top_right",
                         config: {
-                                // See 'Configuration options' for more information.
-                                location: "_Ваш_город_, _RU_", 
-                                locationID: "_ID_Вашего_города_", //Location ID from http://openweathermap.org/help/city_list.txt
-                                appid: "_API_который_Вы_сгенерировали_",  //openweathermap.org API key
-                                colorIcon: true
+                                weatherProvider: "openweathermap",
+                                type: "current",
+                                location: "New York",
+                                locationID: "5128581", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+                                apiKey: "YOUR_OPENWEATHER_API_KEY"
                         }
                 },
                 {
                         module: "weather",
                         position: "top_right",
-                        header: "Ближайший прогноз",
+                        header: "Weather Forecast",
                         config: {
                                 weatherProvider: "openweathermap",
                                 type: "forecast",
-                                location: "_Ваш_город_, _RU_",
-                                locationID: "_ID_Вашего_города_", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
-                                apiKey: "_API_который_Вы_сгенерировали_"
+                                location: "New York",
+                                locationID: "5128581", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+                                apiKey: "YOUR_OPENWEATHER_API_KEY"
                         }
                 },
                 {
@@ -96,20 +95,14 @@ let config = {
                         config: {
                                 feeds: [
                                         {
-                                                title: "Lenta.ru",
-                                                url: "https://lenta.ru/rss/news"
-                                        },
-                                        {
-                                                title: "Vesti.Ru",
-                                                url: "https://www.vesti.ru/vesti.rss"
+                                                title: "New York Times",
+                                                url: "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
                                         }
                                 ],
-                                showPublishDate: false,
-                                showSourceTitle: false,
+                                showSourceTitle: true,
+                                showPublishDate: true,
                                 broadcastNewsFeeds: true,
-                                broadcastNewsUpdates: true,
-                                showDescription: true,
-                                updateInterval: 20000
+                                broadcastNewsUpdates: true
                         }
                 },
         ]
