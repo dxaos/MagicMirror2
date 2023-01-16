@@ -10,7 +10,7 @@ sudo nano /etc/samba/smb.conf
   path = /home/pi/MagicMirror
   browseable = yes
   valid users = @pi
-  wriable = yes
+  writable = yes
 
 Сохраняем файл. Создаём samba-пользователя, задаём ему пароль, активируем его
 pi@MagicMirror:~ $ sudo smbpasswd -a pi
