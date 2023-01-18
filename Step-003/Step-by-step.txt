@@ -43,3 +43,96 @@ sudo service smbd restart
  Для удобства, выложил свой smb.conf
  
  Теперь можно ввести в строке браузера \\ip_зеркала\ При попытке зайти на шару, малинка попросит ввести пароль. Введите pi и пароль, который задавали чуть выше.
+ 
+ Установим модули Cursor и WatchDog
+ 
+ cd ~/MagicMirror/modules
+ git clone https://github.com/MichMich/MMM-WatchDog.gi
+ git clone https://github.com/MarinescuEvghenii/MMM-Cursor.git
+ 
+ В конфиг добавьте строки
+ 
+ 		{ // Модуль Cursor
+			module: 'MMM-Cursor',
+			config: {
+				// See 'Configuration options' for more information.
+			}
+		},	
+
+		{ // WatchDog
+			module: 'MMM-WatchDog',
+			config: {
+				// See 'Configuration options' for more information.
+			}
+		},
+      
+Установим модуль OnlineRadio. Предварительно надо поставить пакет mplayer
+
+sudo apt-get install mplayer
+
+Установим модуль
+
+cd ~/MagicMirror/modules
+git clone https://github.com/Tom-Hirschberger/MMM-MplayerRadio.git
+cd MMM-MplayerRadio
+npm install
+
+В конфиг зеркала добавьте строки (можете сами накидать нужных m3u потоков в конфиг и отсортируйте их по своему вкусу)
+
+		{ //MplayerRadio
+				module: "MMM-MplayerRadio",
+				header: "Radio",
+				position: "top_left",
+				config: {
+					//autoplay: 0,
+					stations: [
+						{
+								title: "Rock Florida",
+								url: "http://us4.internet-radio.com:8258/listen.pls&t=.m3u",
+								logo: "https://radiopotok.ru/f/station/256/902.png",
+						},
+						{
+								title: "Biker FM",
+								url: "https://radiopotok.ru/f/station_m3u/station_239.m3u",
+								logo: "https://radiopotok.ru/f/station/256/239.png",
+						},
+
+						{
+								title: "Classic rock",
+								url: "http://us5.internet-radio.com:8267/listen.pls&t=.m3u",
+								logo: "https://radiopotok.ru/f/station/256/75.png",
+						},
+						{
+								title: "Energy",
+								url: "https://radiopotok.ru/f/station_m3u/station_4.m3u",
+								logo: "https://www.energyfm.ru/design/images/site-design/logo-min.png",
+						},
+						{
+								title: "Maximum",
+								url: "https://radiopotok.ru/f/station_m3u/station_87.m3u",
+								logo: "https://radiopotok.ru/f/station/256/87.png",
+						},
+						{
+								title: "EuropaPlus",
+								url: "https://radiopotok.ru/f/station_m3u/station_1576.m3u",
+								logo: "https://radiopotok.ru/f/station/256/1576.png",
+						},
+
+						{
+								title: "Relax FM",
+								url: "https://radiopotok.ru/f/station_m3u/station_597.m3u",
+								logo: "https://radiopotok.ru/f/station/256/597.png",
+						},
+						{
+								title: "ChilloutFM",
+								url: "https://radiopotok.ru/f/station_m3u/station_1262.m3u",
+								logo: "https://radiopotok.ru/f/station/256/1262.png",
+						},
+						{
+								title: "Graal Radio",
+								url: "https://radiopotok.ru/f/station_m3u/station_1122.m3u",
+								logo: "https://radiopotok.ru/f/station/256/1122.png",
+						}
+					],
+				},
+			},	
