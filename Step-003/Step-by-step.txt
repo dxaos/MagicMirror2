@@ -4,7 +4,15 @@ sudo apt-get install samba
 sudo cp /etc/samba/smb.conf /etc/samba/smb.conf_orig
 sudo nano /etc/samba/smb.conf
 
-Добавляем в конец шару каталога ядра умного зеркала
+В секцию [Global] после workgroup = WORKGROUP добавьте строки 
+   client min protocol = SMB2
+   client max protocol = SMB3
+   min protocol = SMB2
+
+
+В секции #======================= Share Definitions =======================
+закоментируйте все шары, чтобы не мазолили глаза
+Добавьие в конец, шару каталога ядра умного зеркала
 
 [MagicMirror]
   path = /home/pi/MagicMirror
@@ -23,3 +31,11 @@ Enabled user pi.
 
 Рестартуем самбу, и пробуем зайти по сети на малинку по ip
 sudo service smbd restart
+
+!!! Внимание, если при доступе у зеркалу у вас выскакивает ошибка 0x80004005 ресурс не найден, сделайте следующее:
+ - Нажмите Win+R
+ - Введите gpedit.msc
+ - Зайдите "Конфигурация компьютера" -  "Административные шаблоны" - "Сеть" - "Рабочая станция Lanman"
+ - Дважды кликните на "Включить небезопасные гостевые входы", выберите "Включено" и сохраните
+ 
+ 
