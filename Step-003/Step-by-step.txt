@@ -136,3 +136,34 @@ npm install
 					],
 				},
 			},	
+Установим модуль, отключающий светодиод на малинке
+
+cd ~/MagicMirror/modules
+git clone https://github.com/idoodler/MMM-RPI-LED
+cd MMM-RPI-LED
+npm install
+
+Добавим модуль в конфиг
+
+        { //MMM-RPI-LED
+            module: 'MMM-RPI-LED',
+            config: {
+                // See below for configurable options
+            }
+        }
+
+Установим модуль, отображающий калндарь
+
+cd ~/MagicMirror/modules/
+git clone https://github.com/KirAsh4/calendar_monthly
+
+В конфиг добавим строки
+			{
+				module: 'calendar_monthly',
+				position: 'top_right',
+				config: {
+						// The config property is optional
+						// Without a config, a default month view is shown
+						// Please see the 'Configuration Options' section for more information
+				}
+			}
