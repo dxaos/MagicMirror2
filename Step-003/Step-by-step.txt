@@ -152,7 +152,7 @@ npm install
             }
         }
 
-Установим модуль, отображающий калндарь
+Установим модуль, отображающий календарь
 
 cd ~/MagicMirror/modules/
 git clone https://github.com/KirAsh4/calendar_monthly
@@ -167,3 +167,24 @@ git clone https://github.com/KirAsh4/calendar_monthly
 						// Please see the 'Configuration Options' section for more information
 				}
 			}
+			
+Очень полезный модуль iFrame. Позволяет вкрутить в зеркало странцу. Будет использоваться для прикручивания умного дома. В примере конфига на гите ошибка. Ниже покажу, как должно быть.
+Установим модуль 
+cd ~/MagicMirror/modules/
+git clone https://github.com/desertblade/iFrame.git
+cd iFrame
+npm install
+
+Далее в конфиг добавляем параметры модуля
+		{
+			module: 'iFrame',
+			position: 'bottom_bar',	// This can be any of the regions.
+			config: {
+				// See 'Configuration options' for more information.
+					url: "https://www.rbc.ru/",
+					width: "100%", // Optional. Default: 100%
+					height: "100%" //Optional. Default: 100px
+
+			}
+		},
+Рестартуем зеркало и видим во фрейме нашу страничку. Удобно.
