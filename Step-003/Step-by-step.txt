@@ -54,7 +54,7 @@ sudo apt-get install kodi
 			position: 'bottom_left'
 	    },
 	    
-В каталоге с модулями должен лежать модуль MMM-Kodi	    
+В каталоге с модулями должен лежать модуль MMM-Kodi. На сотовый телефон можно поставть приложение Kore (https://play.google.com/store/apps/details?id=org.xbmc.kore&hl=en_US&gl=US) и получите пульт управления медиацентром прямо с телефона. Удобно.	    
 
  Установим модули Cursor и WatchDog
  
@@ -195,7 +195,7 @@ npm install
 				// See 'Configuration options' for more information.
 					url: "https://www.rbc.ru/",
 					width: "100%", // Optional. Default: 100%
-					height: "100%" //Optional. Default: 100px
+					height: "1000px" //Optional. Default: 100px
 
 			}
 		},
@@ -214,6 +214,8 @@ sudo mkdir -p /media/{Musc,Video}
 
 IP_вашего_NAS:/volume1/Media/Music /media/Music nfs defaults 0 0
 IP_вашего_NAS:/volume1/Media/Video /media/Video nfs defaults 0 0
+
+Теперь после перезагрузки у вас должны подмонтироваться шары с Медиа. Эти каталоги можно добавить в список воспроизведения Kodi и смотреть фильмы принимая ванну. На следующем шаге мы поставим проигрыватель MPD и сможем рулить музыкой прямо с телефона.
 
 -----
 Устанавливаем модули из https://github.com/MichMich/MagicMirror/wiki/3rd-party-modules по своему вкусу. У меня на текущий момент следующий список
