@@ -9,7 +9,6 @@ sudo nano /etc/samba/smb.conf
    client max protocol = SMB3
    min protocol = SMB2
 
-
 В секции #======================= Share Definitions =======================
 закоментируйте все шары, чтобы не мазолили глаза
 Добавьие в конец, шару каталога ядра умного зеркала
@@ -215,3 +214,28 @@ sudo mkdir -p /media/{Musc,Video}
 
 IP_вашего_NAS:/volume1/Media/Music /media/Music nfs defaults 0 0
 IP_вашего_NAS:/volume1/Media/Video /media/Video nfs defaults 0 0
+
+-----
+Устанавливаем модули из https://github.com/MichMich/MagicMirror/wiki/3rd-party-modules по своему вкусу. У меня на текущий момент следующий список
+
+calendar_monthly <- Календарь на месяц
+default <- Дефолтные модули, использую только часы
+iFrame <- Для отображения страницы управления умным домом Home Assistant
+internet-monitor <- мониторинг инета
+MMM-Carousel <- Для создания нескольких страниц с модулями
+MMM-connection-status <- статус сетевого соединения
+MMM-Cursor <- Отображает курсор при движении мыкой. Нужен для отладки
+MMM-HideAll <- Скрывает все модули, чтобы глаза не мазолили
+MMM-Kodi <- Модуль запуска медиацентра
+MMM-MarineWeather <- Погодный модуль
+MMM-MplayerRadio <- Онлайн Радио
+MMM-NetworkConnection <- Мониторинг канала
+MMM-network-signal <- Качество сигнала WiFi
+MMM-OpenmapWeather <- Погодный модуль
+MMM-Pinfo <- Системная информация
+MMM-PiTemp <- Температура малинки
+MMM-Remote-Control <- Удалённое управление зеркалом по http
+MMM-RPI-LED <- тушит LED на малинке
+MMM-WatchDog <- WatchDog
+MMM-WeatherOrNot <- Погодный модуль
+MMM-WiFiPassword <- Отображает QR гостевого WiFi и пароль к нему для гостей
